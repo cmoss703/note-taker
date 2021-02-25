@@ -4,11 +4,20 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "express": "^4.16.4"
-  }
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cmoss703/note-taker.git"
+  },
+  "bugs": {
+    "url": "https://github.com/cmoss703/note-taker/issues"
+  },
+  "homepage": "https://github.com/cmoss703/note-taker#readme"
 }
