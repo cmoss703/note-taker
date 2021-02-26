@@ -1,6 +1,6 @@
 const express = require('express');
-const api = require('api');
-const html = require('html');
+// const api = require('./routes/apiRoutes');
+const html = require('./routes/htmlRoutes');
 
 const app = express();
 const PORT = process.env.PORT || 8888;
@@ -13,8 +13,8 @@ app.use(express.json());
 // The below points our server to a series of "route" files.
 // These routes give our server a "map" of how to respond when users visit or request data from various URLs.
 
-require('./routes/apiRoutes')(app);
-require('./routes/htmlRoutes')(app);
+app.use('/', html);
+// app.use('/api', api);
 
 // LISTENER
 // The below code effectively "starts" our server
