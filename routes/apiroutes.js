@@ -1,34 +1,23 @@
-const Notes = require('../db/notes');
+const notes = require('../db/notes');
 const router = require('express').Router();
-const fs = require('fs');
-const path = require('path');
-const db = require("../db/db.json");
 
-// module.exports = (router) => {
-router.get("/api/notes", function (req, res) {
-    res.json(db);
+router.get("/notes", function (req, res) {
+    notes.getNotes()
+    .then((notes) => {
+        return res.json(notes)
+    }).catch((error) => res.status(500).json(error))
 });
 
-router.post("/api/notes", function (req, res) {
-    let note = req.body;
-
-    Notes.getNotes();
-    Notes.read();
-    Notes.addNote(note);
-
-    db.forEach((item, i) => {
-        item.id = i + 1;
-    });
-
-    Notes.write(note);
-
+router.post("/notes", function (req, res) {
+    notes.addNote(req.body)
+    .then((note) => res.json(note))
+    .catch((error) => res.status(500).json(error))
 });
 
-router.delete("/api/notes/:id", (req, res) => {
-    var id = req.params.id;
-
-    Notes.deleteNote(id)
-
+router.delete("/notes/:id", (req, res) => {
+    notes.deleteNote(req.params.id)
+    .then(() => res.json({ok: true}))
+    .catch((error) => res.status(500).json(error))
 });
 
 module.exports = router;
