@@ -1,5 +1,6 @@
 const fs = require('fs');
 const util = require('util');
+const uniqid = require('uniqid');
 
 const readFile = util.promisify(fs.readFile);
 const writeFile = util.promisify(fs.writeFile);
@@ -34,6 +35,7 @@ class Notes {
             throw new Error('Error!')
         } 
         const newNote = {title, text};
+        newNote.id = uniqid();
 
         return this.getNotes()
         .then((notes) => [...notes, newNote])

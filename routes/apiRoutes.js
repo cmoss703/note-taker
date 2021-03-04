@@ -15,6 +15,7 @@ router.post("/notes", function (req, res) {
 });
 
 router.delete("/notes/:id", (req, res) => {
+    console.log(req.params.id);
     notes.deleteNote(req.params.id)
     .then(() => res.json({ok: true}))
     .catch((error) => res.status(500).json(error))
