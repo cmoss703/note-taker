@@ -20,7 +20,8 @@ class Notes {
             try{
                 myNotes = [].concat(JSON.parse(notes))
             }
-            catch(error) {
+            catch(error) { 
+                console.log(error);
                 myNotes = []
             }
             return myNotes
